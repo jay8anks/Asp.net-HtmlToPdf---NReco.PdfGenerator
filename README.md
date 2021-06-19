@@ -19,7 +19,7 @@ I've used Essential Objects EO.Pdf for several years and it works very well. It'
 
 NReco.PdfGenerator is very similar in ease of use, and cheaper for commercial use.
 
-The only thing I noticed between the two products is that NReco.PdfGenerator PDFs look a little big and blocky compared to the actual HTML as viewed in a browser. To get around this issue, I added an HTML zoom tag to reduce the size a little bit. Outside of the image URL, this is the one other setting that may need to be adjusted:
+The only thing I noticed between the two products is that NReco.PdfGenerator PDFs look a little big and blocky compared to the actual HTML as viewed in a browser (or PDFs generated using EO.Pdf). To get around this issue, I added an HTML zoom tag to reduce the size a little bit. Outside of the image URL, this is the one other setting that may need to be adjusted:
 
    html  {
         zoom: 70%;
