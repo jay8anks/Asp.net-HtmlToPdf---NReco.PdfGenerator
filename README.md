@@ -1,38 +1,37 @@
-# Asp.Net-Panel-Control-to-HTML-download
-Grabs all the HTML inside an Asp.Net Panel control and allows it to be downloaded.
+# Asp.Net-HtmlToPdf-download
+Grabs all the HTML inside an Asp.Net Panel control (or Div) And creates a PDF
 
 Note: See Default2.aspx.
 
-This works similar to printing everything in a Panel control to a printer, only it will get all the HTML and create a sample .html file that will prompt to be downloaded. Nothing is saved to the server in the process.
+A simple Asp.Net website based on the project: https://github.com/jay8anks/Asp.Net-Panel-Control-to-HTML-download
 
-This started out as a way to print to PDF using PdfSharp and HtmlRenderer.PdfSharp. This did work, however, the resulting PDF is just too crude. It would probably work fine if you just needed a simple PDF. It did not handle a table or a GridView well at all. 
+Most of the code is the same, except the HTML is converted to a PDF file using NReco.PdfGenerator (A wrappter for wkhtmltopdf).
 
-While researching this, the methods to grab all the html markup inside a Panel were difficult to attach to a button click. They also didn't like it if you had other controls inside the Panel that needed to be ran at the server. 
+View the above projects readme file for more details.
 
-This useses javascript to grab everything inside a Panel and pass it to the codebehind. The HTML is encoded by javascript. If you don't do this, you will get the error:
+There is a sample PDF created using the this code in the "sales_pdfs" directory.
 
-https://stackoverflow.com/questions/81991/a-potentially-dangerous-request-form-value-was-detected-from-the-client
+The only change that needs to be made is the image URL for the Generic Company logo image. 
 
-The choice is encode the HTML or turn off validation on postback. This demo went with encoding the string.
+CSS works using NReco.PdfGenerator, but you can't use any relative URLs or paths. Change the logo image URL in the codebehind to the actual URL and you should get a nice PDF of the HTML, CSS formatting, images and all.
 
-The CSS has to be incorporated into the resulting HTML if you want it to look like the web page you are saving. This is actually not hard. I was able to save a large form with a fairly complex GridView that had multiple header rows on it. The resulting downloaded file looked identical to the web page.
+I've used Essential Objects EO.Pdf for several years and it works very well. It's just a bit on the expensive side.
 
-Look at the codebehind for Default2.aspx to see how the header and style tags were added to the html.
+NReco.PdfGenerator is very similar in ease of use, and cheaper for commercial use.
 
-Note you can grab the user selected row that is displayed if you click the button in the GridView before clicking the "Download" button.
+The only thing I noticed between the two products is that NReco.PdfGenerator PDFs look a little big and blocky compared to the actual HTML as viewed in a browser. To get around this issue, I added an HTML zoom tag to reduce the size a little bit. Outside of the image URL, this is the one other setting that may need to be adjusted:
 
-The sample GridView data was created by code from Aspsnippets:
-
-https://www.aspsnippets.com/Articles/Using-Multiple-DataKeyNames-DataKeys-in-ASPNet-GridView-with-examples.aspx
-
-Related link:
-
-What you will run into if you attempt to use RenderControl to get the HTML of a Panel control:
-
-https://www.codeproject.com/Articles/21127/RenderControl-doesn-t-work-for-GridView
+   html  {
+        zoom: 70%;
+       }
+       
+Note: The PDF CSS is in the code behind, not the .aspx page.
 
 
-All in all, this is all done with a relatively small amount of code. The real trick was figuring out ways around all the limitations of the other methods that were attempted first.
+
+https://www.nrecosite.com/pdf_generator_net.aspx
+
+
 
 
 
